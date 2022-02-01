@@ -4,16 +4,30 @@
 {% endblock %}
 
 {% block body %}
+	<div class="jumbotron-img jumbotron jumbotron-fluid">{# <img
+												src="{{asset('images/merch-husey-sDDOPRxh9nE-unsplash-cropped-filtered.png')}}" alt="chaise" height="200"> #}
+
+
+		{# <img src="{{asset('images/il_794xN.3332449763_2alt.jpg')}}" alt="chaise" width="350" height="350"> #}
+
+	</div>
+
 	<div class="container">
+
 		<h1>Post index</h1>
-		<p>Il y a actuellement
+		<p>
+			<i class="fa fa-magic magic-wand"></i>Il y a actuellement
+
 			<strong>
 				{{posts|length}}
 				posts</strong>
+
+
 		</p>
 
 
 		<table class="table">
+
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -57,6 +71,6 @@
 		<a href="{{ path('post_new') }}">Create new</a>
 
 	</div>
-
-
+	{# <div class="image_index">
+																		<img src="{{asset('images/il_794xN.3332449763_2alt.jpg')}}" alt="chaise" width="350" height="350"></div> #}
 {% endblock %}
