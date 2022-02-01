@@ -35,7 +35,17 @@
 				<p class="pl-2 d-inline font-weight-bold" style="color: #444;">Créer un post</p>
 			</a>
 
-			<button class="btn btn-dark">Sign up</button>
+			<button class="btn btn-dark">
+				<a href={{path('app_register')}}>S'inscrire</a>
+
+			</button>
+			<button class="btn btn-dark">
+				<a href={{path('app_login')}}>Se connecter</a>
+
+
+			</button>
+
+
 		</nav>
 
 		{% block body %}
