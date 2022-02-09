@@ -45,6 +45,10 @@ class Post
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private $updatedAt;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $imageFile;
+
+
 
     public function __construct()
     {
@@ -180,5 +184,29 @@ class Post
     public function defaultUpdatedAt()
     {
         $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    public function getImageFilename(): ?string
+    {
+        return $this->imageFilename;
+    }
+
+    public function setImageFilename(?string $imageFilename): self
+    {
+        $this->imageFilename = $imageFilename;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?string
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?string $imageFile): self
+    {
+        $this->imageFile = $imageFile;
+
+        return $this;
     }
 }

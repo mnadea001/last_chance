@@ -1,0 +1,18 @@
+
+
+
+h1 {color:#74956c;}
+
+body {
+  background: rgb(215,180,158);
+background: linear-gradient(90deg, rgba(215,180,158,1) 12%, rgba(170,69,134,0.7679446778711485) 39%, rgba(220,96,46,1) 79%);
+}
+.navbar {background-color: #74956c;}
+
+.container {background: rgba(255, 255, 255, 0.719);
+border-radius: 15px;
+margin: 20px auto;
+padding-top: 30px;
+padding-bottom: 50px;
+padding-right: 50px;
+padding-left: 50px;}
