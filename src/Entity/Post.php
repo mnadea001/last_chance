@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Types;
 use App\Entity\Category;
+use App\Service\UploaderHelper;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping\JoinTable;
@@ -199,7 +200,8 @@ class Post
     }
     public function getImagePath()
     {
-        return 'uploads/post_images/' . $this->getImageFilename();
+
+        return UploaderHelper::POST_IMAGES . '/' . $this->getImageFilename();
     }
 
     // public function getImageFile(): ?string

@@ -6,6 +6,11 @@ parameters:
     cache_adapter: cache.adapter.apcu
     locale: 'en'
 services:
+    # app.twig_extension:
+    #     class: App\Twig\AppExtension
+    #     public: false
+    #     tags:
+    #         - { name: twig.extension } 
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -32,3 +37,4 @@ services:
         tags: ['controller.service_arguments']
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    Symfony\Component\Asset\Context\RequestStackContext: '@assets.context'

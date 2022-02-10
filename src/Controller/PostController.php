@@ -29,7 +29,7 @@ class PostController extends AbstractController
 
     // #[Route('/new', name: 'post_new', methods: ['GET', 'POST'])]
     #[Route('/new', name: 'post_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UploaderHelper $uploaderHelper): Response
     {
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
@@ -39,6 +39,13 @@ class PostController extends AbstractController
             /** @var Post $post */
             $post = $form->getData();
 
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+
+            if ($uploadedFile) {
+                $newFilename = $uploaderHelper->uploadPostImage($uploadedFile);
+                $post->setImageFilename($newFilename);
+            }
 
 
             $entityManager->persist($post);

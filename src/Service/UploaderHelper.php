@@ -4,15 +4,17 @@ namespace App\Service;
 
 use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Asset\Context\RequestStackContext;
 
 class UploaderHelper
 {
     const POST_IMAGES = 'post_images';
     private $uploadsPath;
-    public function __construct(string $uploadsPath)
+    public function __construct(string $uploadsPath, RequestStackContext $requestStackContext)
     {
 
         $this->uploadsPath = $uploadsPath;
+        $this->requestStackContext = $requestStackContext;
     }
 
     public function uploadPostImage(UploadedFile $uploadedFile): string
@@ -27,5 +29,10 @@ class UploaderHelper
             $newFilename
         );
         return $newFilename;
+    }
+    public function getPublicPath(string $path): string
+    {
+        return $this->requestStackContext
+            ->getBasePath() . '/uploads/' . $path;
     }
 }

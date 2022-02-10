@@ -5,13 +5,13 @@
 
 {% block body %}
 	<h1>Edit Post</h1>
-
-	<form method="POST" action="{{ path('post_edit', {'id': post.id} ) }}" enctype="multipart/form-data">
-
-
-		<input type="file" name="image">
-		<button type="submit" class="btn btn-primary">Upload!</button>
-	</form>
+	{# 
+			<form method="POST" action="{{ path('post_edit', {'id': post.id} ) }}" enctype="multipart/form-data">
+		
+		
+				<input type="file" name="image">
+				<button type="submit" class="btn btn-primary">Upload!</button>
+			</form> #}
 
 
 	{{ include('post/_form.html.twig', {'button_text': 'Update'}) }}

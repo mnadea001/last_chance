@@ -4,13 +4,9 @@
 {% endblock %}
 
 {% block body %}
-	<div class="jumbotron-img jumbotron jumbotron-fluid">{# <img
-														src="{{asset('images/merch-husey-sDDOPRxh9nE-unsplash-cropped-filtered.png')}}" alt="chaise" height="200"> #}
 
-
-		{# <img src="{{asset('images/il_794xN.3332449763_2alt.jpg')}}" alt="chaise" width="350" height="350"> #}
-
-	</div>
+	{# RAJOUTER DES IMAGES #}
+	<div class="jumbotron-img jumbotron jumbotron-fluid"></div>
 
 	<div class="container">
 
@@ -32,6 +28,8 @@
 				<tr>
 					<th>Id</th>
 					<th>Name</th>
+					<th>Image
+					</th>
 					<th>Description</th>
 					<th>Adress</th>
 					<th>Adress2</th>
@@ -48,6 +46,12 @@
 					<tr>
 						<td>{{ post.id }}</td>
 						<td>{{ post.name }}</td>
+						<td>
+							<img class="{{ post.name }}" src="{{ uploaded_asset(post.imagePath) }}" height="300">
+
+
+						</td>
+
 						<td>{{ post.description }}</td>
 						<td>{{ post.adress }}</td>
 						<td>{{ post.adress2 }}</td>
