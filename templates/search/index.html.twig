@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SearchController!
+{% endblock %}
+
+{% block body %}
+{% if app.request.method == 'POST' %}
+	<div>
+		{% if post| length == 0 %}
+			<h4>Aucun résulat pour votre recherche.</h4>
+		{% else %}
+			<h3 class="mt-3">Vos résulats de recherche :</h3>
+			{% for post in post %}
+
+				<div class="d-block">
+					<div class="card border-secondary my-3 text-black" style="width: 18rem;">
+						<div class="card-header">
+
+
+							<h3 class="text-dark">
+
+								{{ post.name }}</h3>
+
+							<h6 class="text-dark">
+
+								Description :
+
+								{{ post.description }}</h6>
+
+							<img class={{ post.name }} src="{{uploaded_asset(post.imagePath)}}" alt="chaise" height="300">
+
+
+							<p>
+								<strong>
+									Objet à récupérer :
+								</strong>
+								{{post.adress}}
+							</p>
+
+							{{ post.postcode }}
+
+
+							{{ post.ville }}
+
+
+							{{ post.pays }}
+
+
+						</p>
+						<p>Détails:</p>
+
+
+						<a href={{ path('post_show', {'id':post.id} )}} class="text-decoration-none">{{post.name}}</a>
+
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	{% endif %}
+	{{ render(controller('App\\Controller\\SearchController::searchBar')) }}</div>{% endif %}{% endblock %}

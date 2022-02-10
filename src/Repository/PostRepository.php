@@ -47,4 +47,24 @@ class PostRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    // Find/search posts by title/content
+    public function findPostsByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('post');
+        $qb
+            ->where(
+                $qb->expr()->andX(
+                    $qb->expr()->orX(
+                        $qb->expr()->like('post.name', ':query'),
+                        $qb->expr()->like('post.description', ':query'),
+                    ),
+                    $qb->expr()->isNotNull('post.createdAt')
+                )
+            )
+            ->setParameter('query', '%' . $query . '%');
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
 }

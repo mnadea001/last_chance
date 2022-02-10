@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/post')]
@@ -23,8 +25,25 @@ class PostController extends AbstractController
     public function index(PostRepository $postRepository): Response
     {
         $arrayPosts = $postRepository->findBy([], ['id' => 'DESC']);
-        return $this->render('post/index.html.twig', [
+        // BARRE DE RECHERCHE
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('handleSearch'))
+            ->add('query', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'Entrez un mot-clé'
+                ]
+            ])
+            ->add('recherche', SubmitType::class, [
+                'attr' => [
+                    'class' => 'btn btn-primary'
+                ]
+            ])
+            ->getForm();
+        return $this->renderForm('post/index.html.twig', [
             'controller_name' => 'PostController',
+            'form' => $form,
             'posts' => $arrayPosts
         ]);
     }
