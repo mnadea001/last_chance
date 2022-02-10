@@ -6,6 +6,7 @@ use App\Entity\Post;
 use App\Entity\Types;
 use App\Form\PostType;
 use App\Entity\Category;
+use App\Service\UploaderHelper;
 use Gedmo\Sluggable\Util\Urlizer;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -37,12 +38,9 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var Post $post */
             $post = $form->getData();
-            // $type = new Types($value);
-            // $category = new Category();
-            // $post = $form->getData();
-            // die(var_dump($post));
-            // $post->setType($type);
-            // $post->setCategory($category);
+
+
+
             $entityManager->persist($post);
             $entityManager->flush();
 
@@ -65,36 +63,34 @@ class PostController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'post_edit')]
-    public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Post $post, EntityManagerInterface $entityManager, UploaderHelper $uploaderHelper): Response
     {
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
+
             if ($uploadedFile) {
-                $destination = $this->getParameter('kernel.project_dir') . '/public/uploads/article_image';
-                $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $newFilename = Urlizer::urlize($originalFilename) . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
-                $uploadedFile->move(
-                    $destination,
-                    $newFilename
-                );
+                $newFilename = $uploaderHelper->uploadPostImage($uploadedFile);
                 $post->setImageFilename($newFilename);
-
-                $entityManager->persist($post);
-
-                $entityManager->flush();
-
-                return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
             }
 
-            return $this->renderForm('post/edit.html.twig', [
-                'post' => $post,
-                'form' => $form,
-            ]);
+
+            $entityManager->persist($post);
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
         }
+
+        return $this->renderForm('post/edit.html.twig', [
+            'post' => $post,
+            'form' => $form,
+        ]);
     }
 
     #[Route('/{id}', name: 'post_delete', methods: ['POST'])]
