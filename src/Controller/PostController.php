@@ -22,8 +22,10 @@ class PostController extends AbstractController
     #[Route('/', name: 'post_index', methods: ['GET'])]
     public function index(PostRepository $postRepository): Response
     {
+        $arrayPosts = $postRepository->findBy([], ['id' => 'DESC']);
         return $this->render('post/index.html.twig', [
-            'posts' => $postRepository->findAll(),
+            'controller_name' => 'PostController',
+            'posts' => $arrayPosts
         ]);
     }
 
