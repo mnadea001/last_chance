@@ -1,9 +1,30 @@
 {{ form_start(form) }}
+<p>
+	<strong>Donne un ptit nom à ton post</strong>
+</p>
 {{ form_row(form.name) }}
 
+<p>
+	<strong>Une image vaut mieux que des mots !</strong>
+
+</p>
+
 {{ form_row(form.imageFile) }}
+
+<p>
+	<strong>Quelque chose à ajouter ?!</strong>
+
+</p>
+
 {{ form_row(form.description) }}
+<p>
+	<strong>Ça se trouve où ?!</strong>
+
+
+</p>
+
 {{ form_row(form.adress) }}
+
 
 {% if form.adress2 is defined %}
 	{{ form_row(form.adress2) }}

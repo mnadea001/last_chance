@@ -46,7 +46,7 @@ class Post
     private $updatedAt;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $imageFile;
+    private $imageFilename;
 
 
 
@@ -197,16 +197,20 @@ class Post
 
         return $this;
     }
-
-    public function getImageFile(): ?string
+    public function getImagePath()
     {
-        return $this->imageFile;
+        return 'uploads/post_images/' . $this->getImageFilename();
     }
 
-    public function setImageFile(?string $imageFile): self
-    {
-        $this->imageFile = $imageFile;
+    // public function getImageFile(): ?string
+    // {
+    //     return $this->imageFile;
+    // }
 
-        return $this;
-    }
+    // public function setImageFile(?string $imageFile): self
+    // {
+    //     $this->imageFile = $imageFile;
+
+    //     return $this;
+    // }
 }
