@@ -8,7 +8,8 @@
 
 	{# CARTE #}
 	<div class="row">
-		<div class="col-md-6" id="maCarte" style="height:450px; width: 350px; margin-left: 300px"></div>
+		<div class="col-md-6" id="maCarte" style="height:450px; margin-left: 300px"></div>
+		{# <div class="col-md-6" id="maCarte" style="height:450px; width: 350px; margin-left: 300px"></div> #}
 
 	</div>
 
@@ -100,6 +101,10 @@
 "Bayonne": {
 "lat": 43.500,
 "lon": -1.467
+},
+"Bordeaux": {
+"lat": 44.840955,
+"lon": -0.575198
 }
 };
 var tableauMarqueurs = [];
@@ -120,7 +125,8 @@ var marqueurs = L.markerClusterGroup();
 
 // On personnalise le marqueur
 var icone = L.icon({
-iconUrl: "images/icone.png",
+iconUrl: "https://image.flaticon.com/icons/png/512/1397/1397898.png",
+
 iconSize: [
 50, 50
 ],
