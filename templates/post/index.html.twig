@@ -27,9 +27,9 @@
 
 			<thead>
 				<tr>
-					<th>Id</th>
-					<th>Name</th>
 					<th>Image</th>
+					<th>Name</th>
+
 					<th>Description</th>
 					<th>Adress</th>
 					<th>Ville</th>
@@ -42,11 +42,11 @@
 			<tbody>
 				{% for post in posts %}
 					<tr>
-						<td>{{ post.id }}</td>
-						<td>{{ post.name }}</td>
 						<td>
 							<img class="{{ post.name }}" src="{{ uploaded_asset(post.imagePath) }}" height="300">
 						</td>
+						<td>{{ post.name }}</td>
+
 						<td>{{ post.description }}</td>
 						<td>{{ post.adress }}</td>
 						<td>{{ post.ville }}</td>
