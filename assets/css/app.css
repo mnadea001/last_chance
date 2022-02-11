@@ -9,7 +9,8 @@ body {
   background: rgb(215,180,158);
 background: linear-gradient(90deg, rgba(215,180,158,1) 12%, rgba(170,69,134,0.7679446778711485) 39%, rgba(220,96,46,1) 79%);
 }
-.navbar {background-color: #7BC86D;
+.navbar {
+  /* background-color: #7BC86D; */
 padding-left:40px;
 padding-right:40px;}
 
