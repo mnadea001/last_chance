@@ -23,3 +23,9 @@ padding-right: 50px;
 padding-left: 50px;}
 
 .tbody {margin-left: 20px;}
+
+.leaflet-tile {
+    filter: hue-rotate(160deg) !important;
+    filter: saturate(3);
+
+}
