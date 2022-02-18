@@ -87,7 +87,7 @@
 	</div>
 </div>{% endif %}{% if comments is empty %}
 <i class="fas fa-comment-slash"></i></div></div>{% else %}{% for comment in comments %}<div class="card-header">
-<a href='#' class="text-decoration-none">@{{comment.user.username}}</a>
+<a href='#' class="text-decoration-none">@{{comment.user.email}}</a>
 <p>Hola</p>
 <p class="card-text">{{ comment.content }}
 </p>

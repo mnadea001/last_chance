@@ -93,8 +93,8 @@ class PostController extends AbstractController
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // $user = $security->getUser();
-            // $comment->setUser($user);
+            $user = $security->getUser();
+            $comment->setUser($user);
             $comment->setPost($post);
             $entityManager->persist($comment);
             $entityManager->flush();
