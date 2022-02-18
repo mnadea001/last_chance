@@ -1,15 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Post
+{% block title %}Nouvelle publication
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="container" style="display:flex; justify-content:space-between;">
+		<div>
+			<h1>Publier un objet abandonné</h1>
 
-		<h1>Create new Post</h1>
+			{{ include('post/_form.html.twig') }}
 
-		{{ include('post/_form.html.twig') }}
+			<a href="{{ path('post_index') }}">retour</a>
+		</div>
+		<div style="margin-left:80px;">
+			<img src=" /images/kamran-abdullayev-G19xqFOVBwg-unsplash.jpg" class=" img-fluid w-50 h-auto" alt=" "></div>
 
-		<a href="{{ path('post_index') }}">back to list</a>
 	</div>
 {% endblock %}

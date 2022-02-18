@@ -99,7 +99,7 @@ class PostController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
         }
-        $likes = $post->getLikes();
+        // $likes = $post->getLikes();
         $comments = $post->getComments();
 
         return $this->renderForm('post/show.html.twig', [
