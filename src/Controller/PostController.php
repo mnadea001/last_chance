@@ -5,12 +5,16 @@ namespace App\Controller;
 use App\Entity\Post;
 use App\Entity\Types;
 use App\Form\PostType;
+use App\Entity\Comment;
 use App\Entity\Category;
+use App\Form\CommentType;
 use App\Service\UploaderHelper;
+use Doctrine\ORM\EntityManager;
 use Gedmo\Sluggable\Util\Urlizer;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -82,11 +86,23 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'post_show', methods: ['GET'])]
-    public function show(Post $post): Response
+    #[Route('/{id}', name: 'post_show', methods: ['GET|POST'])]
+    public function show(Post $post, Request $request, EntityManagerInterface $entityManager, Security $security): Response
     {
-        return $this->render('post/show.html.twig', [
-            'post' => $post,
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $user = $security->getUser();
+            // $comment->setUser($user);
+            $comment->setPost($post);
+            $entityManager->persist($comment);
+            $entityManager->flush();
+        }
+        $comments = $post->getComments();
+
+        return $this->renderForm('post/show.html.twig', [
+            'post' => $post, 'comments' => $comments, 'form' => $form,
         ]);
     }
 
@@ -131,20 +147,4 @@ class PostController extends AbstractController
 
         return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
     }
-
-    // /**
-    //  * @Route("/admin/upload/test", name="upload_test")
-    //  */
-    // public function temporaryUploadAction(Request $request)
-    // {
-    //     /** @var UploadedFile $uploadedFile */
-    //     $uploadedFile = $request->files->get('image');
-    //     $destination = $this->getParameter('kernel.project_dir') . '/public/uploads';
-    //     $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-    //     $newFilename = Urlizer::urlize($originalFilename) . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
-    //     dd($uploadedFile->move(
-    //         $destination,
-    //         $newFilename
-    //     ));
-    // }
 }

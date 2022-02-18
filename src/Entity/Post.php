@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Entity\Types;
 use App\Entity\Category;
 use App\Service\UploaderHelper;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping\JoinTable;
@@ -49,12 +51,16 @@ class Post
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $imageFilename;
 
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class)]
+    private $comments;
+
 
 
     public function __construct()
     {
         $this->defaultCreatedAt();
         $this->defaultUpdatedAt();
+        $this->comments = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -215,4 +221,34 @@ class Post
 
     //     return $this;
     // }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getPost() === $this) {
+                $comment->setPost(null);
+            }
+        }
+
+        return $this;
+    }
 }

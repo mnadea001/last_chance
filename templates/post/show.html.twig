@@ -5,67 +5,91 @@
 
 {% block body %}
 
-	<div class="container">
-		<table class="table">
-			<h1>{{ post.name }}</h1>
+<div class="container">
+	<table class="table">
+		<h1>{{ post.name }}</h1>
 
 
-			<tbody>
+		<tbody>
 
-				<tr>
-					<th>Name</th>
-					<td>{{ post.name }}</td>
+			<tr>
+				<th>Name</th>
+				<td>{{ post.name }}</td>
 
-				</tr>
-				<tr style="text-center">
-
-
-					<img class={{ post.name }} src="{{uploaded_asset(post.imagePath)}}" alt="chaise" height="300">
+			</tr>
+			<tr style="text-center">
 
 
-				</tr>
-
-				<tr>
-					<th>Description</th>
-					<td>{{ post.description }}</td>
-				</tr>
-				<tr>
-					<th>Adress</th>
-					<td>{{ post.adress }}</td>
-				</tr>
-				<tr>
-					<th>Adress2</th>
-					<td>{{ post.adress2 }}</td>
-				</tr>
-				<tr>
-					<th>Postcode</th>
-					<td>{{ post.postcode }}</td>
-				</tr>
-				<tr>
-					<th>Ville</th>
-					<td>{{ post.ville }}</td>
-				</tr>
-				<tr>
-					<th>Pays</th>
-					<td>{{ post.pays }}</td>
-				</tr>
-				<tr>
-					<th>CreatedAt</th>
-					<td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-				</tr>
-				<tr>
-					<th>UpdatedAt</th>
-					<td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-				</tr>
-			</tbody>
-		</table>
-		<a href="{{ path('post_index') }}">back to list</a>
-
-		<a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
-		{{ include('post/_delete_form.html.twig') }}
+				<img class={{ post.name }} src="{{uploaded_asset(post.imagePath)}}" alt="chaise" height="300">
 
 
+			</tr>
+
+			<tr>
+				<th>Description</th>
+				<td>{{ post.description }}</td>
+			</tr>
+			<tr>
+				<th>Adress</th>
+				<td>{{ post.adress }}</td>
+			</tr>
+			<tr>
+				<th>Adress2</th>
+				<td>{{ post.adress2 }}</td>
+			</tr>
+			<tr>
+				<th>Postcode</th>
+				<td>{{ post.postcode }}</td>
+			</tr>
+			<tr>
+				<th>Ville</th>
+				<td>{{ post.ville }}</td>
+			</tr>
+			<tr>
+				<th>Pays</th>
+				<td>{{ post.pays }}</td>
+			</tr>
+			<tr>
+				<th>CreatedAt</th>
+				<td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+			<tr>
+				<th>UpdatedAt</th>
+				<td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="{{ path('post_index') }}">back to list</a>
+
+	<a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
+	{{ include('post/_delete_form.html.twig') }}
+
+
+</div>
+{# FORMULAIRE COMMENTAIRE #}
+<div class="card border-secondary text-black w-90 bg-white">
+
+	{% if app.user %}
+		<div class="card-header bg-white">
+			{{ form_start(form) }}
+			{{ form_row(form.content) }}
+
+			<button type="submit" class="btn">
+				Comment
+				<i class="far fa-comment-dots"></i>
+			</button>
+			{{ form_end(form) }}
+		</div>
 	</div>
+{% else %}
+	<div class="card-header">
+		Vous devez être connecté pour poster des commentaire.
+	</div>
+</div>{% endif %}{% if comments is empty %}
+<i class="fas fa-comment-slash"></i></div></div>{% else %}{% for comment in comments %}<div class="card-header">
+<a href='#' class="text-decoration-none">@{{comment.user.username}}</a>
+<p>Hola</p>
+<p class="card-text">{{ comment.content }}
+</p>
 
-
-{% endblock %}
+{{ comment.createdAt | date('d/m/Y') }}</div>{% endfor %}</div>{% endif %}{% endblock %}
