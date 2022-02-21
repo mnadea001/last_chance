@@ -33,40 +33,44 @@
 		<nav class="navbar navbar-light" style="height: 100px">
 			<a class="navbar-brand" href={{path('post_index') }}>
 				<img src="{{asset('uploads/post_images/logo_last_chance.png')}}" alt="chaise" height="80">
-				<p class="pl-2 d-inline font-weight-bold" style="color: #444;">Last Chance</p>
-			</a>
-			<a class="navbar-brand" href={{path('post_new') }}>
-				<i style="color: #444; font-size: 2rem;" class="pb-1 fad fa-cauldron"></i>
-				<p class="pl-2 d-inline font-weight-bold" ;">Créer un post</p>
+				<p class="pl-2 d-inline font-weight-bold" style="color: black;">
+					<strong>Last Chance</strong>
+				</p>
 			</a>
 
-			<button class="btn btn-dark">
-				<a href={{path('app_register')}}>S'inscrire</a>
-			</button>
-			<button class="btn btn-dark">
-				<a href={{path('app_login')}}>Se connecter</a>
-			</button>
-			<button class="btn btn-dark">
-				<a href={{path('app_logout')}}>Se déconnecter</a>
 
-			</button>
+			{% if app.user %}
+				<a class="navbar-brand" href={{path('post_new') }}>
+					<p class="pl-2 d-inline font-weight-bold;">
+						<strong>Créer un post</strong>
+					</p>
+				</a>
+				<a class="navbar-brand" href="{{path('app_logout')}}">
+					<p class="pl-2 d-inline font-weight-bold;"></p>
+					<strong>Se déconnecter</strong>
+				</a>
 
-		</nav>
+			{% else %}
 
-		{% block body %}
+				<a class="navbar-brand" href={{path('app_register')}}>
 
-			{% block map %}{% endblock %}
+					<p class="pl-2 d-inline font-weight-bold;">
+						<strong>S'inscrire</strong>
 
-		{% endblock %}
+					</p>
+				</a>
+				<a class="navbar-brand" href="{{path('app_login')}}">
 
+					<p class="pl-2 d-inline font-weight-bold;"></p>
+					<strong>Se connecter</strong>
 
-		<footer class="mt-5 p-3 text-center">
-			Made with
-			<i style="color: red;" class="fa fa-heart"></i>
-			by Mathilde Nadeau
-		</br>
-		supported by
-		<a style="color: #444; text-decoration: underline;" href="https://symfonycasts.com">SymfonyCasts</a>
+				</a>
+			{% endif %}
+		</body>
 	</body>
-</html></footer>{% block customjs %}{# <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> #}
-{# {{ encore_entry_script_tags('app') }} #}{% endblock %}</body></html>
+</html></nav>{% block body %}
+
+{% block map %}{% endblock %}{% endblock %}<footer class="mt-5 p-3 text-center">
+Made with
+<i style="color: red;" class="fa fa-heart"></i>
+by Mathilde Nadeau</br>supported by<a style="color: #444; text-decoration: underline;" href="https://symfonycasts.com">SymfonyCasts</a></body></html></footer>{% block customjs %}{# <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> #}{# {{ encore_entry_script_tags('app') }} #}{% endblock %}</body></html>
