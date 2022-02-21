@@ -47,3 +47,9 @@ color: black !important;
 .btn-nav :hover {
   color: #F55B2E;
 }
+
+#img_post:hover{
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+

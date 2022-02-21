@@ -49,9 +49,11 @@
 			</thead>
 			<tbody>
 				{% for post in posts %}
+
+
 					<tr>
 						<td>
-							<img class="{{ post.name }}" src="{{ uploaded_asset(post.imagePath) }}" height="300">
+							<img id="img_post" class="{{ post.name }}" src="{{ uploaded_asset(post.imagePath) }}" height="300" style="border: solid 1px transparent; border-radius: 5px 20px 5px;">
 						</td>
 						<td>{{ post.name }}</td>
 
@@ -86,18 +88,14 @@
 			</tbody>
 		</table>
 		<a href="{{ path('post_new') }}">Create new</a>
-
-	</div>
-
-{% endblock %}
-{# AFFICHAGE CARTE #}
-{% block customjs %}
-	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
-	<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-	<script>
+	</tbody>
+</div>{% endblock %}{# AFFICHAGE CARTE #}{% block customjs %}
+<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<script>
 
 
-		var villes = {
+	var villes = {
 "Paris": {
 "lat": 48.852969,
 "lon": 2.349903
@@ -168,6 +166,4 @@ var groupe = new L.featureGroup(tableauMarqueurs);
 carte.fitBounds(groupe.getBounds().pad(0.5));
 
 carte.addLayer(marqueurs);
-	</script>
-
-{% endblock %}
+</script>{% endblock %}
