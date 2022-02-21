@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SearchController!
+{% block title %}Résultat de recherche
 {% endblock %}
 
 {% block body %}
@@ -9,53 +9,77 @@
 		{% if post| length == 0 %}
 			<h4>Aucun résulat pour votre recherche.</h4>
 		{% else %}
-			<h3 class="mt-3">Vos résulats de recherche :</h3>
-			{% for post in post %}
+			<div style="margin: 10px 150px">
+				<h3 class="mt-3" style="color:#2E9C56;">
+					<strong>
+						Vos résulats de recherche :</strong>
+				</h3>
+				{% for post in post %}
+					<section>
+						<div class="card border-secondary my-3 text-black search_box">
+							<h1>
 
-				<div class="d-block">
-					<div class="card border-secondary my-3 text-black" style="width: 18rem;">
-						<div class="card-header">
+								{{ post.name }}</h1>
+							<div>
+								<img class={{ post.name }} src="{{uploaded_asset(post.imagePath)}}" alt="chaise" height="300">
 
-
-							<h3 class="text-dark">
-
-								{{ post.name }}</h3>
-
-							<h6 class="text-dark">
-
-								Description :
-
-								{{ post.description }}</h6>
-
-							<img class={{ post.name }} src="{{uploaded_asset(post.imagePath)}}" alt="chaise" height="300">
+							</div>
+							<div
+								class="d-block">
 
 
-							<p>
-								<strong>
-									Objet à récupérer :
-								</strong>
-								{{post.adress}}
-							</p>
-
-							{{ post.postcode }}
+								{# <div class="card-header"> #}
 
 
-							{{ post.ville }}
+								<h6 class="text-black">
+
+									<strong>
+										Description :</strong>
+
+									{{ post.description }}</h6>
 
 
-							{{ post.pays }}
+								<p>
+									<strong>
+										Objet à récupérer :
+									</strong>
+
+								</p>
+								<p>{{post.adress}}
+								</p>
+
+								<p>
+
+									{{ post.postcode }}
+
+									{{ post.ville }}
+								</p>
+
+								<p>
+
+									{{ post.pays }}
 
 
-						</p>
-						<p>Détails:</p>
+								</p>
+								<p>
+									<strong>
+										Détails:
+									</strong>
 
-						<i class="fa-thin fa-magnifying-glass-plus"></i>
+								</p>
 
-						<a href={{ path('post_show', {'id':post.id} )}} class="text-decoration-none">{{post.name}}</a>
 
+								<a href={{ path('post_show', {'id':post.id} )}} class="navbar-brand">{{post.name}}</a>
+
+
+							</div>
+
+						</div>
+						{# </div> #}
 					</div>
-				</div>
-			</div>
-		{% endfor %}
+				</section>
+			{% endfor %}
+		</div>
+
 	{% endif %}
 	{{ render(controller('App\\Controller\\SearchController::searchBar')) }}</div>{% endif %}{% endblock %}

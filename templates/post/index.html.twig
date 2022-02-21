@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Post index
+{% block title %}Liste des posts
 {% endblock %}
 
 {% block body %}
@@ -18,13 +18,18 @@
 	<div class="container">
 		{% include "search/_searchBar.html.twig" %}
 
-		<h1>Post index</h1>
-		<p>
-			<i class="fa fa-magic magic-wand"></i>Il y a actuellement
-
+		<h1>
 			<strong>
-				{{posts|length}}
-				posts</strong>
+				Liste des posts</strong>
+		</h1>
+		<p class="post_list">
+			<i class="fa fa-magic magic-wand">
+				Il y a actuellement
+
+				<strong>
+					{{posts|length}}
+					posts</strong>
+			</i>
 
 
 		</p>
@@ -39,7 +44,11 @@
 
 
 						<div class="card-body">
-							<h5 class="card-title">{{ post.name }}</h5>
+							<a class="navbar-brand" href={{ path('post_show', {'id': post.id} ) }}>
+								<h5 class="card-title">{{ post.name }}</h5>
+
+							</a>
+
 
 							<p class="card-text">{{ post.description }}</p>
 

@@ -5,9 +5,13 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container1">
 	<table class="table">
-		<h1>{{ post.name }}</h1>
+		<h1 style="color:#F55B2E">
+
+			<strong>
+				{{ post.name }}</strong>
+		</h1>
 
 
 		<tbody>
@@ -59,10 +63,42 @@
 			</tr>
 		</tbody>
 	</table>
-	<a href="{{ path('post_index') }}">back to list</a>
 
-	<a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
-	{{ include('post/_delete_form.html.twig') }}
+	<a class="navbar-brand" href={{ path('post_index') }}>
+
+
+		<p class="pl-2 d-inline font-weight-bold;">
+			<strong>Retour à la liste</strong>
+
+		</p>
+	</a>
+
+	<a class="navbar-brand" href={{ path('post_edit', {'id': post.id} ) }}>
+
+
+		<p class="pl-2 d-inline font-weight-bold;">
+			<strong>Modifier</strong>
+
+
+		</p>
+	</a>
+
+	<a class="navbar-brand" href='#'>
+
+
+		<p class="pl-2 d-inline font-weight-bold;">
+			<strong>{{ include('post/_delete_form.html.twig') }}</strong>
+
+
+		</p>
+	</a>
+
+	{# <p class="pl-2 d-inline text-black font-weight-bold;">
+				<strong>
+		
+					</strong>
+		
+			</p> #}
 
 
 </div>

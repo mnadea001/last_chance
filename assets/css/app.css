@@ -6,6 +6,7 @@
 
 body {
   background-color: #DBC5F8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   /* background: rgb(215,180,158);
 background: linear-gradient(90deg, rgba(215,180,158,1) 12%, rgba(170,69,134,0.7679446778711485) 39%, rgba(220,96,46,1) 79%); */
 }
@@ -92,3 +93,22 @@ padding: 5px 10px;}
 }
 
 section {display: flex;}
+
+.post_list :hover {
+  background-color : #DBC5F8;
+}
+
+.search_box {
+  background: #2E9C56;
+  display: flex;
+}
+
+.d-block {margin: 10px 100px;}
+
+.container1 {background: #b9e6ed;
+border-radius: 15px;
+margin: 20px 200px;
+padding-top: 30px;
+padding-bottom: 50px;
+padding-right: 50px;
+padding-left: 50px;}
