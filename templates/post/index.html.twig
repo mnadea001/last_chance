@@ -62,8 +62,20 @@
 						<td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 						<td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 						<td>
-							<a href="{{ path('post_show', {'id': post.id}) }}">show</a>
-							<a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
+
+							<a class="navbar-brand" href={{ path('post_show', {'id': post.id} ) }}>
+								<p class="pl-2 d-inline font-weight-bold;">
+									<strong>show</strong>
+								</p>
+							</a>
+
+							<a class="navbar-brand" href={{ path('post_edit', {'id': post.id} ) }}>
+
+								<p class="pl-2 d-inline font-weight-bold;">
+									<strong>edit</strong>
+								</p>
+							</a>
+
 						</td>
 					</tr>
 				{% else %}
