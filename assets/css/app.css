@@ -14,7 +14,7 @@ background: linear-gradient(90deg, rgba(215,180,158,1) 12%, rgba(170,69,134,0.76
 padding-left:40px;
 padding-right:40px;}
 
-.container {background: rgba(255, 255, 255, 0.733);
+.container {background: #2E9C56;
 border-radius: 15px;
 margin: 20px auto;
 padding-top: 30px;
@@ -35,6 +35,7 @@ padding-left: 50px;}
   list-style: none;
 }
 
+.navbar-brand {color: black;}
 .navbar-brand :hover {
 color: #F55B2E;}
 
@@ -53,3 +54,38 @@ color: black !important;
   transform: scaleX(-1);
 }
 
+.td:hover {
+  font-weight: bolder;
+}
+
+.container2 {display: flex;}
+
+h1 {color: #F55B2D;}
+
+.card {background: #DBC5F8;}
+.list-group-item {background: #DBC5F8;}
+
+
+.container3 {
+ background-color: #FCFE75 !important;
+ border-radius: 15px;
+margin: 20px auto;
+padding-top: 30px;
+padding-bottom: 50px;
+padding-right: 50px;
+padding-left: 50px;
+width:90%;
+}
+
+.btn_post {
+  background-color:#F55B2D;
+  border: 1px solid transparent;
+border-radius: 5px;
+color:#DBC5F8;
+font-weight: bolder;
+margin-top: 20px;
+padding: 5px 10px;}
+
+.btn_post:hover {
+  color:black;
+}

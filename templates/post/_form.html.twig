@@ -1,23 +1,27 @@
 {{ form_start(form) }}
-<p>
+<p style="color:#DBC5F8;">
+
 	<strong>Donne un ptit nom à ton post</strong>
 </p>
 {{ form_row(form.name) }}
 
-<p>
+<p style="color:#DBC5F8;">
+
 	<strong>Une image vaut mieux que des mots !</strong>
 
 </p>
 
 {{ form_row(form.imageFile) }}
 
-<p>
+<p style="color:#DBC5F8;">
+
 	<strong>Quelque chose à ajouter ?!</strong>
 
 </p>
 
 {{ form_row(form.description) }}
-<p>
+<p style="color:#DBC5F8;">
+
 	<strong>Ça se trouve où ?!</strong>
 
 
@@ -36,5 +40,5 @@
 {{ form_row(form.pays) }}
 {{ form_row(form.createdAt) }}
 
-<button type="submit" class="btn btn-primary">Publier</button>
+<button type="submit" class="btn_post">Publier</button>
 {{ form_end(form) }}

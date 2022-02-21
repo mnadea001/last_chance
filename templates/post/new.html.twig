@@ -4,13 +4,20 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container" style="display:flex; justify-content:space-between;">
+	<div class="container3" style="display:flex; justify-content:space-between;">
 		<div>
 			<h1>Publier un objet abandonné</h1>
 
 			{{ include('post/_form.html.twig') }}
 
-			<a href="{{ path('post_index') }}">retour</a>
+			<a class="navbar-brand" href={{ path('post_index') }}>
+
+				<p class="pl-2 d-inline font-weight-bold;">
+					<strong>Retour</strong>
+				</p>
+			</a>
+
+
 		</div>
 		<div style="margin-left:150px;">
 			<img src=" /images/kamran-abdullayev-G19xqFOVBwg-unsplash.jpg" class=" img-fluid w-50 h-auto" alt=" "></div>
