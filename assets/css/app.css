@@ -58,7 +58,8 @@ color: black !important;
   font-weight: bolder;
 }
 
-.container2 {display: flex;}
+.container2 {display: flex;
+margin-left:15px;}
 
 h1 {color: #F55B2D;}
 
@@ -89,3 +90,5 @@ padding: 5px 10px;}
 .btn_post:hover {
   color:black;
 }
+
+section {display: flex;}
