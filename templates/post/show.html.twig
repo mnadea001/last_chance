@@ -93,20 +93,15 @@
 		</p>
 	</a>
 
-	{# <p class="pl-2 d-inline text-black font-weight-bold;">
-					<strong>
-			
-						</strong>
-			
-				</p> #}
-
 
 </div>
 {# FORMULAIRE COMMENTAIRE #}
-<div class="card border-secondary text-black w-90 bg-white">
+<div class="card border-secondary text-black w-50 bg-white" style="margin:10px auto">
+
 
 	{% if app.user %}
-		<div class="card-header bg-white">
+		<div class="card-header" style="margin:10px auto">
+
 			{{ form_start(form) }}
 			{{ form_row(form.content) }}
 
@@ -122,7 +117,9 @@
 		Vous devez être connecté pour poster des commentaire.
 	</div>
 </div>{% endif %}{% if comments is empty %}
-<i class="fas fa-comment-slash"></i></div></div>{% else %}{% for comment in comments %}<div class="card-header">
+<i class="fas fa-comment-slash"></i></div></div>{% else %}{% for comment in comments %}<div class="card-header w-50 " style="margin:10px auto">
+
+
 <a href='#' class="text-decoration-none">@{{comment.user.email}}</a>
 <p>Hola</p>
 <p class="card-text">{{ comment.content }}
