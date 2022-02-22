@@ -2,17 +2,21 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\PostRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
-    public function index(): Response
+    #[Route('/', name: 'app_home', methods: ['GET'])]
+    public function index(PostRepository $postRepository): Response
     {
+        $arrayPosts = $postRepository->findBy([], ['id' => 'DESC']);
+
         return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
+            'controller_name' => 'PostController',
+            'posts' => $arrayPosts
         ]);
     }
 }
