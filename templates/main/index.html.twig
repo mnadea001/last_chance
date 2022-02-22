@@ -4,22 +4,36 @@
 {% endblock %}
 
 {% block body %}
-	<div style="margin-left:40px;">
-		<h1>
-			<strong>Bienvenue sur Last Chance</strong>
-		</h1>
-		<p>
-			<strong>
-				Trouvez en un clic les objets à récupérer près de chez vous</strong>
-		</p>
-		<p style="color:#2E9C56;">
-			<strong>
-				Connectez-vous pour avoir accès à toutes les fonctionnalités du site !
-			</strong>
-		</p>
+	<section style="display:flex;">
+		<div style="margin-left:150px; margin-top:150px;">
+			<h1 style="color:#FCFE75;">
+				<strong>Bienvenue sur Last Chance</strong>
+			</h1>
+			<p>
+				<strong>
+					Trouvez en un clic les objets à récupérer près de chez vous</strong>
+			</p>
+			<p style="color:#F55B2E;">
+				<strong>
+					Connectez-vous pour avoir accès à toutes les fonctionnalités du site !
+				</strong>
+			</p>
 
-	</div>
 
+		</div>
+
+		<div class="pic-ctn">
+
+			<img src="/images/anna-sullivan-yxRYfsrdyWU-unsplash.jpg" class="pic img-fluid" style="object-fit:contain; width:70%; height: 300px;" alt=" ">
+
+			<img src="/images/bench-accounting-nvzvOPQW0gc-unsplash.jpg" class="pic img-fluid" style="object-fit:contain; width:70%; height: 300px;" alt=" ">
+
+			<img src="/images/chewy-KIqJfzbII9w-unsplash.jpg" class="pic img-fluid" style="object-fit:contain; width:70%; height: 300px;" alt=" ">
+
+			<img src="/images/curology-6CJg-fOTYs4-unsplash.jpg" class="pic img-fluid" style="object-fit:contain; width:70%; height: 300px;" alt=" ">
+
+		</div>
+	</section>
 
 	{# page utilisateur connecté #}
 	{% if app.user %}
@@ -52,5 +66,4 @@
 			{% endfor %}
 		</div>
 	{% endif %}
-
 {% endblock %}
