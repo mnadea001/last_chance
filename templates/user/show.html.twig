@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil
+{% endblock %}
+
+{% block body %}
+	<section style="margin-left:50px; display:block;">
+		<h1>Mon profil</h1>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ user.username }}</td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td>{{ user.email }}</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+		<a href="{{ path('user_index') }}">retour sur les posts</a>
+	</br>
+
+	<a href="{{ path('user_edit', {'id': user.id}) }}">modifier mon profil</a>
+</br>
+<a href="{{ path('app_home') }}">retour à la page d'accueil</a></br>{{ include('user/_delete_form.html.twig') }}</section>{% endblock %}

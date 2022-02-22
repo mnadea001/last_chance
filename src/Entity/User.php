@@ -36,6 +36,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'likes')]
     private $likes;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $username;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -165,6 +168,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->likes->removeElement($like)) {
             // $like->removeLike($this);
         }
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
 
         return $this;
     }
