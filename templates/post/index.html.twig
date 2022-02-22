@@ -18,7 +18,8 @@
 	<div class="container">
 		{% include "search/_searchBar.html.twig" %}
 
-		<h1>
+		<h1 class="post_list">
+
 			<strong>
 				Liste des posts</strong>
 		</h1>
@@ -45,7 +46,10 @@
 
 						<div class="card-body">
 							<a class="navbar-brand" href={{ path('post_show', {'id': post.id} ) }}>
-								<h5 class="card-title">{{ post.name }}</h5>
+								<h5 class="card-title">
+									<strong>
+										{{ post.name }}</strong>
+								</h5>
 
 							</a>
 

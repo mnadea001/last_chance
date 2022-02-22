@@ -53,7 +53,6 @@
 			{% else %}
 				<div class="dropdown">
 					<span>
-						<p>*</p>
 						<img src="/images/avatar_male_man_people_person_profile_user_icon_123199.svg" alt="" width="30px">
 					</span>
 					<div class="dropdown-content">
@@ -68,6 +67,8 @@
 			{% block map %}{% endblock %}
 		{% endblock %}
 		<footer class="mt-5 p-3 text-center">Made with<i style="color: red;" class="fa fa-heart"></i>by Mathilde Nadeau</br>supported by<a style="color: #444; text-decoration: underline;" href="https://symfonycasts.com">SymfonyCasts</a>
-		{% block customjs %}{# <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> #}{# {{ encore_entry_script_tags('app') }} #}
-	{% endblock %}
-</body></html>
+		{% block customjs %}{# <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> #}
+			{# {{ encore_entry_script_tags('app') }} #}
+		{% endblock %}
+	</body>
+</html>
