@@ -137,3 +137,7 @@ padding-left: 50px;}
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+a {text-decoration: none;
+list-style: none;}
+a:hover {font-weight: bolder;}
