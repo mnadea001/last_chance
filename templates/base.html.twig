@@ -31,7 +31,7 @@
 
 	<body>
 		<nav class="navbar navbar-light" style="height: 100px">
-			<a class="navbar-brand" href={{path('post_index') }}>
+			<a class="navbar-brand" href={{path('app_home') }}>
 				<img src="{{asset('uploads/post_images/logo_last_chance.png')}}" alt="chaise" height="80">
 				<p class="pl-2 d-inline font-weight-bold" style="color: black;">
 					<strong>Last Chance</strong>
@@ -48,6 +48,11 @@
 			{% endif %}
 
 			{% if app.user %}
+				<a class="navbar-brand" href="{{path('post_index') }}">
+					<p class="pl-2 d-inline font-weight-bold;"></p>
+					<strong>Liste des posts</strong>
+				</a>
+
 				<a class="navbar-brand" href={{path('post_new') }}>
 					<p class="pl-2 d-inline font-weight-bold;">
 						<strong>Créer un post</strong>
@@ -79,6 +84,13 @@
 
 
 			{% else %}
+
+
+				<a class="navbar-brand" href="{{path('post_index') }}">
+					<p class="pl-2 d-inline font-weight-bold;"></p>
+					<strong>Liste des posts</strong>
+				</a>
+
 				<div class="dropdown">
 					<span>
 						<img src="/images/avatar_male_man_people_person_profile_user_icon_123199.svg" alt="" width="30px">

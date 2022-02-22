@@ -55,39 +55,42 @@
 							<p class="card-text">{{ post.description }}</p>
 
 						</div>
+						{% if app.user %}
 
 
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">{{ post.adress }}</li>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">{{ post.adress }}</li>
 
-							<li class="list-group-item">{{ post.ville }}</li>
+								<li class="list-group-item">{{ post.ville }}</li>
 
-							<li class="list-group-item">{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</li>
+								<li class="list-group-item">{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</li>
 
-						</ul>
-
-
-						<div class="card-body">
-							<a class="navbar-brand" href={{ path('post_show', {'id': post.id} ) }}>
-
-								<p class="pl-2 d-inline font-weight-bold;">
-									<strong>Détails</strong>
-
-								</p>
-							</a>
-
-							<a class="navbar-brand" href={{ path('post_edit', {'id': post.id} ) }}>
+							</ul>
 
 
-								<p class="pl-2 d-inline font-weight-bold;">
-									<strong>Modifier</strong>
+							<div class="card-body">
+								<a class="navbar-brand" href={{ path('post_show', {'id': post.id} ) }}>
+
+									<p class="pl-2 d-inline font-weight-bold;">
+										<strong>Détails</strong>
+
+									</p>
+								</a>
+
+								<a class="navbar-brand" href={{ path('post_edit', {'id': post.id} ) }}>
 
 
-								</p>
-							</a>
+									<p class="pl-2 d-inline font-weight-bold;">
+										<strong>Modifier</strong>
 
 
-						</div>
+									</p>
+								</a>
+
+
+							</div>
+						{% endif %}
+
 					</div>
 
 
