@@ -218,3 +218,6 @@ img:nth-child(4) {
 .title_home:hover {
  font-size:70px;
 }
+
+.link_home {color:#F55B2D;}
+.link_home:hover {color:#FCFE75;}
