@@ -54,73 +54,83 @@
 
 							<p class="card-text">{{ post.description }}</p>
 
+
+							{% if app.user %}
+
+
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item">{{ post.adress }}</li>
+
+									<li class="list-group-item">{{ post.ville }}</li>
+
+									<li class="list-group-item">{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</li>
+
+								</ul>
+
+
+								<div class="card-body">
+									<a class="navbar-brand" href={{ path('post_show', {'id': post.id} ) }}>
+
+										<p class="pl-2 d-inline font-weight-bold;">
+											<strong>Détails</strong>
+
+										</p>
+									</a>
+
+									<a class="navbar-brand" href={{ path('post_edit', {'id': post.id} ) }}>
+
+
+										<p class="pl-2 d-inline font-weight-bold;">
+											<strong>Modifier</strong>
+
+
+										</p>
+									</a>
+
+
+								</div>
+							{% else %}
+
+								<div style="display:flex;">
+									<i class="fa-solid fa-lock"></i>
+
+									<p>
+										Vous devez vous connecter pour voir toutes les infos !
+									</p>
+								</div>
+
+							{% endif %}
+
 						</div>
-						{% if app.user %}
 
-
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item">{{ post.adress }}</li>
-
-								<li class="list-group-item">{{ post.ville }}</li>
-
-								<li class="list-group-item">{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</li>
-
-							</ul>
-
-
-							<div class="card-body">
-								<a class="navbar-brand" href={{ path('post_show', {'id': post.id} ) }}>
-
-									<p class="pl-2 d-inline font-weight-bold;">
-										<strong>Détails</strong>
-
-									</p>
-								</a>
-
-								<a class="navbar-brand" href={{ path('post_edit', {'id': post.id} ) }}>
-
-
-									<p class="pl-2 d-inline font-weight-bold;">
-										<strong>Modifier</strong>
-
-
-									</p>
-								</a>
-
-
-							</div>
-						{% endif %}
 
 					</div>
 
 
-				</div>
+				{% else %}
+
+					<p colspan="11">no records found</p>
 
 
-			{% else %}
+				{% endfor %}
+			</section>
 
-				<p colspan="11">no records found</p>
+			{% if app.user %}
 
-
-			{% endfor %}
-		</section>
-
-		{% if app.user %}
-
-			<a class="navbar-brand" href={{path('post_new') }}>
-				<p class="pl-2 d-inline font-weight-bold;">
-					<strong>Créer un post</strong>
-				</p>
-			</a>
-		{% endif %}
+				<a class="navbar-brand" href={{path('post_new') }}>
+					<p class="pl-2 d-inline font-weight-bold;">
+						<strong>Créer un post</strong>
+					</p>
+				</a>
+			{% endif %}
 
 
-	</div>
-{% endblock %}{# AFFICHAGE CARTE #}{% block customjs %}
-	<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
-	<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
-	<script>
-		var villes = {
+		</div>
+	{% endblock %}{# AFFICHAGE CARTE #}{% block customjs %}
+		<script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+		<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+		<script>
+			var villes = {
 "Paris": {
 "lat": 48.852969,
 "lon": 2.349903
@@ -191,5 +201,5 @@ var groupe = new L.featureGroup(tableauMarqueurs);
 carte.fitBounds(groupe.getBounds().pad(0.5));
 
 carte.addLayer(marqueurs);
-	</script>
-{% endblock %}
+		</script>
+	{% endblock %}
