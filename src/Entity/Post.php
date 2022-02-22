@@ -2,16 +2,17 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use App\Entity\Types;
 use App\Entity\Category;
 use App\Service\UploaderHelper;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping\JoinTable;
 use Doctrine\ORM\Mapping\PreUpdate;
 use Doctrine\ORM\Mapping\PrePersist;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -54,6 +55,9 @@ class Post
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class)]
     private $comments;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'likes')]
+    private $likes;
+
 
 
     public function __construct()
@@ -61,6 +65,7 @@ class Post
         $this->defaultCreatedAt();
         $this->defaultUpdatedAt();
         $this->comments = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
     public function getId(): ?int
     {
@@ -248,6 +253,30 @@ class Post
                 $comment->setPost(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(User $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+        }
+
+        return $this;
+    }
+
+    public function removeLike(User $like): self
+    {
+        $this->likes->removeElement($like);
 
         return $this;
     }

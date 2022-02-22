@@ -99,11 +99,11 @@ class PostController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
         }
-        // $likes = $post->getLikes();
+        $likes = $post->getLikes();
         $comments = $post->getComments();
 
         return $this->renderForm('post/show.html.twig', [
-            'post' => $post, 'comments' => $comments, 'form' => $form,
+            'post' => $post, 'comments' => $comments, 'form' => $form, 'likes' => $likes
         ]);
     }
 
@@ -147,5 +147,22 @@ class PostController extends AbstractController
         }
 
         return $this->redirectToRoute('post_index', [], Response::HTTP_SEE_OTHER);
+    }
+    #[Route('/like/{id}', name: 'app_post_like')]
+    public function like(Post $post, Security $security, EntityManagerInterface $em): Response
+    {
+        $user = $security->getUser();
+
+        if ($post->getLikes()->contains($user)) {
+            $post->removeLike($user);
+            $em->flush();
+
+            return $this->redirectToRoute('post_show', ['id' => $post->getId()]);
+        }
+
+        $post->addLike($user);
+        $em->flush();
+
+        return $this->redirectToRoute('post_show', ['id' => $post->getId()]);
     }
 }
