@@ -114,7 +114,7 @@
 	</div>
 {% else %}
 	<div class="card-header">
-		Vous devez être connecté pour poster des commentaire.
+		Vous devez être connecté pour poster des commentaires / liker des posts.
 	</div>
 </div>{% endif %}{% if comments is empty %}
 <i class="fas fa-comment-slash"></i></div></div>{% else %}{% for comment in comments %}<div class="card-header w-50 " style="margin:10px auto">
@@ -125,4 +125,6 @@
 <p class="card-text">{{ comment.content }}
 </p>
 
-{{ comment.createdAt | date('d/m/Y') }}</div>{% endfor %}</div>{% endif %}{# AFFICHAGE LIKES #}<div class="card-footer bg-white"><a href={{ path('app_post_like', {'id': post.id} )}} class="btn btn-light bg-white">{% if app.user in post.likes %}<i class="fas fa-heart" style="color:red;"></i>{% else %}<i class="far fa-heart"></i>{% endif %}</a></div>{% endblock %}
+{{ comment.createdAt | date('d/m/Y') }}</div>{% endfor %}</div>{% endif %}{# AFFICHAGE LIKES #}{% if app.user %}<div class="card-footer bg-white"><a href={{ path('app_post_like', {'id': post.id} )}} class="btn btn-light bg-white">{% if app.user in post.likes %}
+<i class="fas fa-heart" style="color:red;"></i>{% else %}
+<i class="far fa-heart"></i>{% endif %}</a></div>{% endif %}{% endblock %}
